@@ -1,0 +1,32 @@
+table, th, td {
+    border: 1px solid #90ac78;
+    width:400px;
+}
+
+body{
+    display: grid;
+    place-items: center;
+}
+
+#addDeck{
+    
+    width: 150px; 
+    height: 40px; 
+    background-color: #758e61;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.input_deck{
+    display: flex; 
+    align-items: center; 
+    position:fixed;
+    bottom: 0;
+    padding: 20px;
+}
+
+#inputDeck_id {
+    margin-right: 10px; 
+    width: 180px; 
+    height: 30px; 
+}

@@ -9,10 +9,12 @@ router.get("/",(req,res)=>{
     res.render("decks");
 })
 
-router.post("/",(req,res)=>{
-
+router.post("/",async (req,res)=>{
+    const deck = new deckModel ({
+        name: req.body.inputDeck_id,
+    });
+    await deck.save();
 })
-
 
 router.put("/",(req,res)=>{
     

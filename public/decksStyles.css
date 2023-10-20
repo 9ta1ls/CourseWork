@@ -1,12 +1,26 @@
 table, th, td {
     border: 1px solid #90ac78;
-    width:400px;
+    text-align: center;    
 }
 
 body{
     display: grid;
     place-items: center;
+    font-family: 'Trebuchet MS', sans-serif;
 }
+
+button{
+    background-color: #758e61;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.buttonConteiner{
+    gap: 0px;
+    display: flex;
+    margin-left: 0px;
+    margin-right: 0px;
+ }
 
 #addDeck{
     

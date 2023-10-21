@@ -24,7 +24,11 @@ router.post("/",async (req,res)=>{
 })
 
 router.put("/:id",async (req,res)=>{
-    
+    const deckId = req.params.id;
+    const newName = req.body.name;
+    const update = {name: newName};
+    const updateDeck = await deckModel.findByIdAndUpdate(deckId,update, { new: true })
+    res.json(updateDeck);
 })
 
 

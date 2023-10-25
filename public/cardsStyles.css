@@ -22,8 +22,19 @@ button{
     margin-right: 0px;
  }
 
-#addDeck{
+.input_card{
+    display: flex; 
+    position:fixed;
+    bottom: 0;
+    padding: 20px;
+    margin-right: 10px; 
     
+}
+input{
+    height: 32px;
+}
+
+#addCard{
     width: 150px; 
     height: 40px; 
     background-color: #758e61;
@@ -31,23 +42,4 @@ button{
     border-radius: 5px;
     cursor: pointer;
 }
-.input_deck{
-    display: flex; 
-    align-items: center; 
-    position:fixed;
-    bottom: 0;
-    padding: 20px;
-}
 
-#inputDeck_id {
-    margin-right: 10px; 
-    width: 180px; 
-    height: 30px; 
-}
-
-
-a{
-    color: black;
-    text-decoration: none;
-
-  }

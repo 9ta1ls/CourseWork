@@ -4,6 +4,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 
 const deckModel = require("../models/deck")
+const cardModel = require("../models/card")
 
 router.get("/",async (req,res)=>{
     const decksArr = await deckModel.find();

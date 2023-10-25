@@ -13,4 +13,4 @@ const cardSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('cards', cardSchema);;
+module.exports = mongoose.model('cards', cardSchema);

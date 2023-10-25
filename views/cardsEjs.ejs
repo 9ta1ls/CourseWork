@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel ="stylesheet"  href="/public/cardsStyles.css">
+    <title>Картки</title>
+  </head>
+    <body>
+            <h1>Мої Картки</h1>
+            <table id="decksTable">
+              <thead>
+                <tr>
+                  <th>№</th>
+                  <th>Питання</th>
+                  <th>Відповідь</th>
+                  <th>Операції</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% let i = 1; %>
+                <% cardsArr.forEach(function(card) { %>
+                  <tr> 
+                    <td><%i%></td>
+                    <td></td>
+                    <td>
+                      <div class="changeButtonsConteiner">
+                        <button style="width: 90px;" dataDeckId= "<%= deck._id%>" class="deleteDeck">Видалити</button> 
+                      </div>              
+                    </td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+
+            <div class="input_card">
+              <form action="/Decks/Cards" method="post"> 
+  
+                    <input required id = "inputQuestionCard_id" type="text" name = "deckname" placeholder="Введіть питання">
+                    <input required id = "inputAnswerCard_id" type="text" name = "deckname" placeholder="Введіть відповідь">
+
+                <button id="addCard">Додати картку</button>
+              </form>
+            </div> 
+    </body>     
+</html>
+
+

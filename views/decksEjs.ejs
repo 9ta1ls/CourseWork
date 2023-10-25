@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel ="stylesheet"  href="public/decksStyles.css">
+    <link rel ="stylesheet"  href="/public/decksStyles.css">
     <script src="/public/deckScript.js" defer></script>
     <title>Колоди</title>
   </head>
@@ -21,12 +21,13 @@
                 <% decksArr.forEach(function(deck) { %>
                   <tr> 
                     <td>
-                      <span class="deckName"><%= deck.name %></span>
+                      <span class="deckName"><a href="/Cards/<%= deck._id %>"><%= deck.name %></a></span>
+                      
                       <input type="text" class="deckInput" value="<%= deck.name %>" style="display:none; text-align: center;">
                     </td>
                     <td><%= (deck.cardCount !== undefined ? deck.cardCount : 0) %></td>
                     <td>
-                      <div class="buttonConteiner">
+                      <div class="changeButtonsConteiner">
                         <button style="width: 90px; display:none" dataDeckId="<%= deck._id %>" class="saveDeck">Зберегти</button>
                         <button style="width: 90px;" dataDeckId="<%= deck._id%>" class="editDeck">Змінити</button> 
                         <button style="width: 90px;" dataDeckId= "<%= deck._id%>" class="deleteDeck">Видалити</button> 

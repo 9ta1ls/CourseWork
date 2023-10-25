@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const card = require('./card');
+const cards = require('./card');
 
 
 const deckSchema = new Schema({
@@ -10,8 +10,8 @@ const deckSchema = new Schema({
     },
     cards:[{
         type: Schema.Types.ObjectId,
-        ref:'card'
+        ref:'cards'
     }]
 });
 
-module.exports = mongoose.model('decks', deckSchema);;;
+module.exports = mongoose.model('decks', deckSchema);

@@ -1,6 +1,8 @@
 table, th, td {
     border: 1px solid #90ac78;
     text-align: center;    
+    border-collapse: collapse;
+    border-width: 3px;
 }
 
 body{

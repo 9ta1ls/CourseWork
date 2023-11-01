@@ -7,7 +7,7 @@
     <title>Картки</title>
   </head>
     <body>
-            <h1>Мої Картки</h1>
+            <h1>Колода <%=deckName%></h1>
             <table id="decksTable">
               <thead>
                 <tr>
@@ -21,24 +21,24 @@
                 <% let i = 1; %>
                 <% cardsArr.forEach(function(card) { %>
                   <tr> 
-                    <td><%i%></td>
-                    <td></td>
+                    <td><%=i%></td>
+                    <td><%=card.question%></td>
+                    <td><%=card.answer%></td>
                     <td>
                       <div class="changeButtonsConteiner">
                         <button style="width: 90px;" dataDeckId= "<%= deck._id%>" class="deleteDeck">Видалити</button> 
-                      </div>              
+                      </div>    
                     </td>
                   </tr>
+                  <%i++%>
                 <% }) %>
               </tbody>
             </table>
 
             <div class="input_card">
-              <form action="/Decks/Cards" method="post"> 
-  
-                    <input required id = "inputQuestionCard_id" type="text" name = "deckname" placeholder="Введіть питання">
-                    <input required id = "inputAnswerCard_id" type="text" name = "deckname" placeholder="Введіть відповідь">
-
+              <form action="/Cards/<%=deck._id%>" method="post"> 
+                    <input required id = "inputQuestionCard_id" type="text" name = "question" placeholder="Введіть питання">
+                    <input required id = "inputAnswerCard_id" type="text" name = "answer" placeholder="Введіть відповідь">
                 <button id="addCard">Додати картку</button>
               </form>
             </div> 

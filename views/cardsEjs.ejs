@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel ="stylesheet"  href="/public/cardsStyles.css">
+    <script src="/public/cardScript.js" defer></script>
     <title>Картки</title>
   </head>
     <body>
+            <a href="/Decks" id="backButton">Назад</a>
             <h1>Колода <%=deckName%></h1>
             <table id="decksTable">
               <thead>
@@ -26,7 +28,7 @@
                     <td><%=card.answer%></td>
                     <td>
                       <div class="changeButtonsConteiner">
-                        <button style="width: 90px;" dataDeckId= "<%= deck._id%>" class="deleteDeck">Видалити</button> 
+                        <button style="width: 90px;" dataDeckId="<%= deckId%>" dataCardId= "<%= card._id%>" class="deleteCard">Видалити</button> 
                       </div>    
                     </td>
                   </tr>
@@ -42,6 +44,7 @@
                 <button id="addCard">Додати картку</button>
               </form>
             </div> 
+            
     </body>     
 </html>
 

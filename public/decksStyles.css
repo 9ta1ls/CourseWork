@@ -3,8 +3,7 @@ table, th, td {
     text-align: center;    
     border-collapse: collapse;
     border-width: 3px;
-    border-radius: 2px;
-    padding: 5px;
+    padding: 0;
 }
 
 body{
@@ -16,7 +15,7 @@ body{
 button{
     background-color: #758e61;
     color: #fff;
-    border-radius: 5px;
+    border-radius: 0px;
     cursor: pointer;
 }
 .changeButtonsConteiner{
@@ -28,7 +27,6 @@ button{
  }
 
 #addDeck{
-    
     width: 150px; 
     height: 40px; 
     background-color: #758e61;

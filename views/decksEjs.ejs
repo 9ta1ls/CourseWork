@@ -25,7 +25,7 @@
                       
                       <input type="text" class="deckInput" value="<%= deck.name %>" style="display:none; text-align: center;">
                     </td>
-                    <td><%= (deck.cardCount !== undefined ? deck.cardCount : 0) %></td>
+                    <td><%= (deck.cards.length !== undefined ? deck.cards.length : 0) %></td>
                     <td>
                       <div class="changeButtonsConteiner">
                         <button style="width: 90px; display:none" dataDeckId="<%= deck._id %>" class="saveDeck">Зберегти</button>

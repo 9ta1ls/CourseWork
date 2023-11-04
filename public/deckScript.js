@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     deleteButtons.forEach(button => {
     button.addEventListener('click', async (event) => {
     const deckId = event.target.getAttribute("dataDeckId");
-    console.log(deckId);
     try {
           const response = await fetch(`/Decks/${deckId}`, {
               method: 'DELETE'

@@ -9,11 +9,14 @@
   </head>
     <body>
             <a href="/Decks" id="backButton">Назад</a>
-            <h1>Колода <%=deckName%></h1>
+            <h1 style="color: white;">Колода <%=deckName%></h1>
+            <% if (cardsArr.length > 0) { %>
+              <button id="learnButton" dataDeckId="<%= deckId %>">Вивчати</button>
+            <% } %>
             <table id="decksTable">
               <thead>
                 <tr>
-                  <th>№</th>
+                  <th style="width: 22px;">№</th>
                   <th>Питання</th>
                   <th>Відповідь</th>
                   <th>Операції</th>
@@ -23,12 +26,12 @@
                 <% let i = 1; %>
                 <% cardsArr.forEach(function(card) { %>
                   <tr> 
-                    <td><%=i%></td>
+                    <td style="width: 22px;"><%=i%></td>
                     <td><%=card.question%></td>
                     <td><%=card.answer%></td>
-                    <td>
+                    <td style="padding:1px">
                       <div class="changeButtonsConteiner">
-                        <button style="width: 90px;" dataDeckId="<%= deckId%>" dataCardId= "<%= card._id%>" class="deleteCard">Видалити</button> 
+                        <button style="width: 100%;" dataDeckId="<%= deckId%>" dataCardId= "<%= card._id%>" class="deleteCard">Видалити</button> 
                       </div>    
                     </td>
                   </tr>
@@ -39,8 +42,8 @@
 
             <div class="input_card">
               <form action="/Cards/<%=deck._id%>" method="post"> 
-                    <input required id = "inputQuestionCard_id" type="text" name = "question" placeholder="Введіть питання">
-                    <input required id = "inputAnswerCard_id" type="text" name = "answer" placeholder="Введіть відповідь">
+                    <input required id = "inputQuestionCard_id" type="text" name = "question" placeholder="Введіть питання" autocomplete="off">
+                    <input required id = "inputAnswerCard_id" type="text" name = "answer" placeholder="Введіть відповідь" autocomplete="off">
                 <button id="addCard">Додати картку</button>
               </form>
             </div> 

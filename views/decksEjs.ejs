@@ -8,25 +8,28 @@
     <title>Колоди</title>
   </head>
     <body>
-            <h1>Мої Колоди</h1>
+            <h1 style="color: white;">Мої Колоди</h1>
             <table id="decksTable">
               <thead>
                 <tr>
+                  <th style="width: 22px;">№</th>
                   <th>Назва</th>
-                  <th>Кількість карток</th>
+                  <th style="width: 22px;">Кількість карток</th>
                   <th>Операції</th>
                 </tr>
               </thead>
               <tbody>
+                <% let i = 1; %>
                 <% decksArr.forEach(function(deck) { %>
                   <tr> 
+                    <td style="width: 22px;"><%=i%></td>
                     <td>
-                      <span class="deckName"><a href="/Cards/<%= deck._id %>"><%= deck.name %></a></span>
+                      <span class="deckName"><a href="/Cards/<%= deck._id %>" style="color: white;"><%= deck.name %></a></span>
                       
                       <input type="text" class="deckInput" value="<%= deck.name %>" style="display:none; text-align: center;">
                     </td>
-                    <td><%= (deck.cards.length !== undefined ? deck.cards.length : 0) %></td>
-                    <td>
+                    <td ><%= (deck.cards.length !== undefined ? deck.cards.length : 0) %></td>
+                    <td style="padding:1px">
                       <div class="changeButtonsConteiner">
                         <button style="width: 90px; display:none" dataDeckId="<%= deck._id %>" class="saveDeck">Зберегти</button>
                         <button style="width: 90px;" dataDeckId="<%= deck._id%>" class="editDeck">Змінити</button> 
@@ -34,13 +37,14 @@
                       </div>              
                     </td>
                   </tr>
+                  <%i++%>
                 <% }) %>
               </tbody>
             </table>
 
             <div class="input_deck">
               <form action="/Decks" method="post"> 
-                <input required id = "inputDeck_id" type="text" name = "deckname" placeholder="Введіть назву колоди">
+                <input required id = "inputDeck_id" type="text" name = "deckname" placeholder="Введіть назву колоди" autocomplete="off">
                 <button id="addDeck">Додати Колоду</button>
               </form>
             </div> 

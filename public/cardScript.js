@@ -6,14 +6,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const cardId = event.target.getAttribute("dataCardId");
     const deckId = event.target.getAttribute("dataDeckId");
     try {
-          const response = await fetch(`/Cards/${deckId}/${cardId}`, {
+          const response = await fetch(`/cards/${deckId}/${cardId}`, {
               method: 'DELETE',
           });
 
         } catch (error) {
           console.error(error);
         }
-        location.replace(`/Cards/${deckId}`);
+        location.replace(`/cards/${deckId}`);
       });
     })
+});
+
+const learningButton = document.getElementById("learningButton");
+learningButton.addEventListener('click', function() {
+  const deckId = learningButton.getAttribute("dataDeckId");
+    location.replace(`/cards/${deckId}/learning`);
 });

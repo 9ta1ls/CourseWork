@@ -14,8 +14,9 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended:false}));
 app.set("view engine", "ejs");
 
-app.use("/Decks", deckRoute);
-app.use("/Cards", cardRoute);
+app.use("/decks", deckRoute);
+app.use("/cards", cardRoute);
+
 
 
 app.listen(port,() => {

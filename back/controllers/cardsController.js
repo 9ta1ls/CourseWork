@@ -41,8 +41,19 @@ const deleteCard = async(req, res)=>{
 }
 
 
+const loadLearingPage = async(req, res)=>{
+    const deckId = req.params.id;
+    const deckWithCards = await deckModel.findById(deckId);
+    const cardsArr = deckWithCards.cards;
+    res.render("learningEjs",{deckId: deckId});
+}
+
+
+
+
 module.exports = {
     showCards,
     postCard,
-    deleteCard
+    deleteCard,
+    loadLearingPage
 };

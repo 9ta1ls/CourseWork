@@ -66,6 +66,8 @@ input{
     color:white;
     border-radius: 5px;
     border-color: #CDE7B0;
+    font-size: 18px;
+    font-family: 'Trebuchet MS', sans-serif;
 }
 
 a{

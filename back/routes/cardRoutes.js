@@ -21,4 +21,7 @@ router.put("/",(req,res)=>{
 //Видалення карток
 router.delete("/:id/:cardId",cardsController.deleteCard);
 
+//Відображення сторінки для вивчення
+router.get("/:id/learning", cardsController.loadLearingPage);
+
 module.exports = router;

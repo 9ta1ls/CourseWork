@@ -8,15 +8,15 @@
     <title>Картки</title>
   </head>
     <body>
-            <a href="/Decks" id="backButton">Назад</a>
+            <a href="/decks" id="backButton">Назад</a>
             <h1 style="color: white;">Колода <%=deckName%></h1>
             <% if (cardsArr.length > 0) { %>
-              <button id="learnButton" dataDeckId="<%= deckId %>">Вивчати</button>
+              <button id="learningButton" dataDeckId="<%= deckId %>">Вивчати</button>
             <% } %>
             <table id="decksTable">
               <thead>
                 <tr>
-                  <th style="width: 22px;">№</th>
+                  <th style="width: 10px;">№</th>
                   <th>Питання</th>
                   <th>Відповідь</th>
                   <th>Операції</th>
@@ -26,7 +26,7 @@
                 <% let i = 1; %>
                 <% cardsArr.forEach(function(card) { %>
                   <tr> 
-                    <td style="width: 22px;"><%=i%></td>
+                    <td style="width: 10px;"><%=i%></td>
                     <td><%=card.question%></td>
                     <td><%=card.answer%></td>
                     <td style="padding:1px">
@@ -41,7 +41,7 @@
             </table>
 
             <div class="input_card">
-              <form action="/Cards/<%=deck._id%>" method="post"> 
+              <form action="/cards/<%=deck._id%>" method="post"> 
                     <input required id = "inputQuestionCard_id" type="text" name = "question" placeholder="Введіть питання" autocomplete="off">
                     <input required id = "inputAnswerCard_id" type="text" name = "answer" placeholder="Введіть відповідь" autocomplete="off">
                 <button id="addCard">Додати картку</button>

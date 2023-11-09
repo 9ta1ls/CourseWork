@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
           console.error(error);
         }
-        location.replace("/Decks");
+        location.replace("/decks");
       });
     });
 
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
               });
 
               button.disabled = false;
-              location.replace("/Decks");
+              location.replace("/decks");
             }
           });
         });

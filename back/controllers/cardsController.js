@@ -23,7 +23,7 @@ const postCard = async (req, res) =>{
         await deck.save();
     })
     setTimeout(() => {
-        res.redirect(`/Cards/${deckId}`);
+        res.redirect(`/cards/${deckId}`);
     }, 100);
 }
 
@@ -45,7 +45,8 @@ const loadLearingPage = async(req, res)=>{
     const deckId = req.params.id;
     const deckWithCards = await deckModel.findById(deckId);
     const cardsArr = deckWithCards.cards;
-    res.render("learningEjs",{deckId: deckId});
+    const cardsArrJson = JSON.stringify(cardsArr);
+    res.render("learningEjs",{deckId: deckId, cardsArr: cardsArr, cardsArrJson: cardsArrJson});
 }
 
 

@@ -3,7 +3,7 @@ body{
     place-items: center;
     background-color: #313638;
     font-family: 'Trebuchet MS', sans-serif;
-    margin-bottom: 70px;
+    margin-bottom: 30px;
 }
 
 button{
@@ -12,9 +12,12 @@ button{
     border-radius: 5px;
     cursor: pointer;
     height: 30px;
-    padding: 0;
+    padding: 5;
     font-size:medium;
     border-color: #CDE7B0;
+    font-family: 'Trebuchet MS', sans-serif;
+    margin-left: 6px;
+    margin-right: 6px;
 }
 
 #backButton{
@@ -39,6 +42,24 @@ input{
 
 }
 
-h1{
+h1, h2{
     color:white;
 }
+
+#question{
+    margin-top: 70px;
+}
+
+#answerContainer{
+    
+    outline: none; 
+    display: flex; 
+    position:fixed;
+    bottom: 0;
+    margin-bottom: 50px;
+}
+
+.answerItem{
+    padding: 30px;
+}
+

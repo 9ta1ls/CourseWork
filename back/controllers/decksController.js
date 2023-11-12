@@ -11,7 +11,7 @@ const postDeck = async (req, res) =>{
         name: deckName,
     });
     await deck.save();
-    res.redirect("/Decks");
+    res.redirect("/decks");
 };
 
 const updateDeck = async (req, res) =>{

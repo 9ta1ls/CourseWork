@@ -9,23 +9,25 @@ document.addEventListener('DOMContentLoaded', function () {
     let cardsArr = JSON.parse(cardsArrJSON);
     
 
+    async function answerFunc(event) {
+      if (event.key === "2") {
+          cardsArr.push(cardsArr[0]);
+          cardsArr.splice(0, 1);
+          console.log(cardsArr);
+          
+      } else if (event.key === "3") {
+          cardsArr.splice(0, 1);
+          
+      } else if (event.key === "1") {
+          
+      }
+      answerContainer.removeEventListener("keyup", answerFunc);
+  }
     async function answerContainerPromise() {
       await new Promise(resolve => {
-        answerContainer.addEventListener("keyup", function(event) {
-            if (event.key === "2") {
-                cardsArr.push(cardsArr[0]);
-                cardsArr.splice(0, 1);
-                console.log(cardsArr);
-                resolve();
-            } else if (event.key === "3") {
-                cardsArr.splice(0, 1);
-                resolve();
-            } else if (event.key === "1") {
-                resolve();
-            }
-        });
+        answerContainer.addEventListener("keyup", answerFunc);
     });
-}
+  } 
 
 
   async function processCards() {
@@ -44,26 +46,25 @@ document.addEventListener('DOMContentLoaded', function () {
         questionField.innerHTML = `${card.question}`;
 
         //Натискання enter
-          async function enterHandler(event) {
-            if (event.key === "Enter") {
-                    const answerValue = answerInput.value; 
-                    answerInput.style.display = "none";
-                    cardAnswer.style.display = "block";
-                    cardAnswer.innerHTML = `${card.answer}`;
-                    answerFromInput.innerHTML = `${answerValue}`
-                    answerFromInput.style.display = "block";
-                    answerContainer.style.display = "flex";
-                    qaSeparator.style.display = "block";
-                    //натискання 1,2,3 
-                    answerContainer.focus();
-                    await answerContainerPromise();
-                    answerInput.removeEventListener("keyup", enterHandler);
-                }
-            }
+          
 
           await new Promise(resolve => {
-            answerInput.addEventListener("keyup",enterHandler);
-            resolve
+            answerInput.addEventListener("keyup",async function(event) {
+              if (event.key === "Enter") {
+                      const answerValue = answerInput.value; 
+                      answerInput.style.display = "none";
+                      cardAnswer.style.display = "block";
+                      cardAnswer.innerHTML = `${card.answer}`;
+                      answerFromInput.innerHTML = `${answerValue}`
+                      answerFromInput.style.display = "block";
+                      answerContainer.style.display = "flex";
+                      qaSeparator.style.display = "block";
+                      //натискання 1,2,3 
+                      answerContainer.focus();
+                      await answerContainerPromise();
+                      resolve();
+                  }
+              });
           });
     }};
 

@@ -2,9 +2,9 @@ const express = require("express");
 const router  = express.Router();
 const path = require("path");
 const mongoose = require("mongoose");
+const {validateToken} = require('../JWT/JWT');
 
 const deckModel = require("../models/deck")
-/* const cardModel = require("../models/card") */
 
 const decksController = require("../controllers/decksController");
 

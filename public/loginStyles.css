@@ -1,0 +1,49 @@
+
+    body {
+      font-family: 'Trebuchet MS', sans-serif;
+      background-color: #313638;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 75vh;
+      margin: 0;
+    }
+
+    #loginForm {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    input {
+      font-family: 'Trebuchet MS', sans-serif;
+      width: 100%;
+      border-color: #CDE7B0;
+      margin-bottom: 10px;
+      background-color: #313638;
+      color:white;
+      padding: 8px;
+      border-radius: 5px;
+    }
+
+    button {
+      font-family: 'Trebuchet MS', sans-serif;
+      padding: 5px;
+      background-color: #313638;
+      color: white;
+      cursor: pointer;
+      font-size:medium;
+      border-color: #CDE7B0;
+      border-radius: 5px;
+    }
+
+    label{
+      color:white;
+    }
+
+    #registerLink{
+      
+      margin-top: 15px;
+      cursor: pointer;
+      color: #CDE7B0;
+      text-decoration: none;
+    }

@@ -1,10 +1,11 @@
 th{
-    width: 120px;
+    width: 130px;
 }
 td{
     border: 2px solid #CDE7B0;
 }
 table,th, td { 
+    font-size: 25px;
     border-collapse: collapse;
     text-align: center;  
     border-radius: 50px;
@@ -29,6 +30,7 @@ button{
     padding: 0;
     font-size:medium;
     border-color: #CDE7B0;
+    font-size: 18px;
 }
 .changeButtonsConteiner{
     gap: 0px;
@@ -61,7 +63,7 @@ button{
     height: 30px; 
 }
 input{
-    height: 34px;
+    height: 26px;
     background-color: #313638;
     color:white;
     border-radius: 5px;

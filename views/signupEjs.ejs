@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сторінка реєстрації</title>
+  <link rel ="stylesheet"  href="/public/loginStyles.css">
+</head>
+<body>
+  <form id="loginForm">
+    <label for="username">Логін:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="password">Пароль:</label>
+    <input type="text" id="password" name="password" required>
+    <button id="regButton" type="button" onclick="register()">Зареєструватися</button>
+  </form>
+
+  <script>
+     function register() {
+      const loginUsername = document.getElementById('username').value;
+      const loginPassword = document.getElementById('password').value;
+      const data = {
+        username: loginUsername,
+        password: loginPassword
+      };
+      fetch('/api/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(()=>{
+        window.location.href = '/api/login';
+      })
+    }
+  </script>
+
+</body>
+</html>

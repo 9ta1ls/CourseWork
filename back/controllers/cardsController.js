@@ -36,7 +36,6 @@ const deleteCard = async(req, res)=>{
         (err, result) => {
         }
     )
-
     res.status(200).send();
 }
 

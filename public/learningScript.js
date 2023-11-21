@@ -6,10 +6,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const answerFromInput = document.getElementById("answerFromInput");
     const cardsContainer = document.getElementById('cardsContainer');
     const cardsArrJSON = cardsContainer.getAttribute('cardsArrJson');
+    const question = document.getElementById("question");
+
     let cardsArr = JSON.parse(cardsArrJSON);
     
-
-
     function getPromiseFromEvent(item, event) {
       return new Promise((resolve) => {
         const listener = (e) => {
@@ -22,13 +22,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     async function waitForEnter(){
       let userInput = '';
-      console.log("1");
       while (userInput !== 'Enter') { 
         const event = await getPromiseFromEvent(answerInput, 'keyup');
-        console.log(event);
-
         userInput += event.key;
-
         if (event.key !== 'Enter') {
           userInput = ''; 
         }
@@ -40,12 +36,15 @@ document.addEventListener('DOMContentLoaded', function () {
         cardAnswer.innerHTML = `${card.answer}`;
         answerFromInput.innerHTML = `${answerValue}`
         answerFromInput.style.display = "block";
+        if(answerValue !== card.answer){
+          answerFromInput.style.backgroundColor = "#eb1c1c";
+        }
+        else{
+          answerFromInput.style.backgroundColor = "#688E26";
+        }
         answerContainer.style.display = "flex";
         qaSeparator.style.display = "block";
-        //натискання 1,2,3 
         answerContainer.focus();
-
-
     };
 
 
@@ -53,11 +52,8 @@ document.addEventListener('DOMContentLoaded', function () {
       let userInput = '';
       while (userInput !== '1' && userInput !== '2' && userInput !== '3') { 
         userInput = '';
-        console.log("answewr While")
         const event = await getPromiseFromEvent(answerContainer, 'keyup');
         userInput = event.key;
-        console.log(userInput);
-        console.log(cardsArr);
       }
       if(userInput == '1'){
 
@@ -65,7 +61,6 @@ document.addEventListener('DOMContentLoaded', function () {
       else if(userInput == '2'){
         cardsArr.push(cardsArr[0]);
           cardsArr.splice(0, 1);
-          console.log(cardsArr);
       }
       else if(userInput == '3'){
         cardsArr.splice(0, 1);
@@ -77,7 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   async function processCards() {
       while(cardsArr.length != 0) {
-        console.log("while");
         const card = cardsArr[0];
         answerInput.value ="";
         answerInput.style.display = "block";
@@ -92,9 +86,17 @@ document.addEventListener('DOMContentLoaded', function () {
           
         await waitForEnter();
         await waitForAnswer();
+        
+    }
+    //Вивчення завершене
+    answerInput.style.display = "none";
+    cardAnswer.style.display = "none";
+    answerFromInput.style.display = "none";
+    answerContainer.style.display = "none";
+    qaSeparator.style.display = "none";
+    question.textContent = "Вивчення завершене!";
+  };
 
-
-    }};
 
     
    processCards();

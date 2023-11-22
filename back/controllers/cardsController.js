@@ -1,7 +1,27 @@
-const deckModel = require("../models/deck")
+const deckModel = require("../models/deck");
+const userModel = require('../models/user');
+const {verify} = require('jsonwebtoken');
+
+
+function returnUserId(req){
+    const accessToken = req.cookies["access-token"];
+    const decoded = verify(accessToken,'secretThatINeedToChange');
+    return decoded.id;
+};
+
+async function isDeckInUser(req, res, deckId){
+    const userId = returnUserId(req);
+    const user = await userModel.findById(userId);
+    return user.decks.includes(deckId);
+};
+
 
 const showCards = async (req, res) => {
     const deckId = req.params.id;
+    if(isDeckInUser(req, res, deckId) == false){
+        console.log('a');
+        res.statusCode(400);
+    }
     const deckWithCards = await deckModel.findById(deckId);
     const name = deckWithCards.name;
     const cardsArr = deckWithCards.cards;
@@ -16,6 +36,9 @@ const postCard = async (req, res) =>{
         answer: newAnswer
     }
     const deckId = req.params.id;
+    if(!isDeckInUser(req, res, deckId)){
+        res.redirect('/decks')
+    }
      deckModel.findById(deckId, async(err, deck) => {
         if(err)
             return err;
@@ -29,6 +52,9 @@ const postCard = async (req, res) =>{
 
 const deleteCard = async(req, res)=>{
     const deckId = req.params.id;
+    if(!isDeckInUser(req, res, deckId)){
+        res.redirect('/decks')
+    }
     const cardId = req.params.cardId;
     deckModel.updateOne(  
         { _id: deckId },
@@ -42,6 +68,9 @@ const deleteCard = async(req, res)=>{
 
 const loadLearingPage = async(req, res)=>{
     const deckId = req.params.id;
+    if(!isDeckInUser(req, res, deckId)){
+        res.redirect('/decks')
+    }
     const deckWithCards = await deckModel.findById(deckId);
     const cardsArr = deckWithCards.cards;
     const cardsArrJson = JSON.stringify(cardsArr);

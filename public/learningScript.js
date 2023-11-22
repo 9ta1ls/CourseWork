@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
     answerFromInput.style.display = "none";
     answerContainer.style.display = "none";
     qaSeparator.style.display = "none";
-    question.textContent = "Вивчення завершене!";
+    question.textContent = "Вивчення завершено!";
   };
 
 

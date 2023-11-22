@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Сторінка авторизації</title>
+  <title>Cards</title>
   <link rel ="stylesheet"  href="/public/loginStyles.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
 
     <label for="password">Пароль:</label>
     <input type="text" id="password" name="password" required>
-
+    <h4 style="display: none;" id="errorMassage">Неправильна логін або пароль!</h4>
     <button type="button" onclick="login()">Увійти</button>
     <p></p>
     <a href="/api/signup" id="registerLink">Зареєструватися</a>
@@ -23,11 +23,11 @@
 
   <script>
     function login() {
-      const loginUsername = document.getElementById('username').value;
-      const loginPassword = document.getElementById('password').value;
+      const loginUsername = document.getElementById('username');
+      const loginPassword = document.getElementById('password');
       const data = {
-        username: loginUsername,
-        password: loginPassword
+        username: loginUsername.value,
+        password: loginPassword.value
       };
       fetch('/api/login', {
         method: 'POST',
@@ -38,7 +38,16 @@
       })
       .then(response =>{
         if(!response.ok){
-          console.log("Неправильна комбінація логіну та паролю");
+          const errorMassage = document.getElementById('errorMassage')
+          errorMassage.style.color = "#cf1212";
+          errorMassage.style.display ="block";
+          loginUsername.style.borderColor = "#cf1212";
+          loginPassword.style.borderColor = "#cf1212";
+          loginUsername.value = '';
+          loginPassword.value = '';
+        }
+        else{
+          location.replace('/decks');
         }
       })
     }

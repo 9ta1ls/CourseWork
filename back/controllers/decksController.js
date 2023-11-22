@@ -1,7 +1,25 @@
-const deckModel = require("../models/deck")
+const deckModel = require('../models/deck');
+const userModel = require('../models/user');
+const {verify} = require('jsonwebtoken');
+
+
+ function returnUserId(req){
+    const accessToken = req.cookies["access-token"];
+    const decoded = verify(accessToken,'secretThatINeedToChange');
+    return decoded.id;
+};
+
+async function isDeckInUser(req, res, deckId){
+    const userId = returnUserId(req);
+    const user = await userModel.findById(userId);
+    if(!user.decks.includes(deckId))
+        return false
+};
 
 const showDecks = async(req, res) =>{
-    const decksArr = await deckModel.find();
+    const userId = returnUserId(req)
+    const user = await userModel.findById(userId).populate('decks');
+    const decksArr = user.decks;
     res.render("decksEjs",{decksArr: decksArr});
 };
 
@@ -11,11 +29,17 @@ const postDeck = async (req, res) =>{
         name: deckName,
     });
     await deck.save();
+    const deckId = deck._id;
+    const userId = returnUserId(req)
+    await userModel.findByIdAndUpdate(userId, { $push: { decks: deckId } });
     res.redirect("/decks");
 };
 
 const updateDeck = async (req, res) =>{
     const deckId = req.params.id;
+    if(!isDeckInUser(req, res, deckId)){
+        res.redirect('/decks')
+    }
     const newName = req.body.name;
     const update = {name: newName};
     const updateDeck = await deckModel.findByIdAndUpdate(deckId,update, { new: true })
@@ -24,6 +48,9 @@ const updateDeck = async (req, res) =>{
 
 const deleteDeck = async (req, res) =>{
     const deckId = req.params.id;
+    if(!isDeckInUser(req, res, deckId)){
+        res.redirect('/decks')
+    }
     await deckModel.findByIdAndDelete(deckId);
     res.status(200).send();
 };

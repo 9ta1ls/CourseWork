@@ -61,6 +61,14 @@ document.addEventListener('DOMContentLoaded', function() {
           });
         });
 
+        //loguot
+        const logoutButton = document. getElementById('logoutButton');
+        logoutButton.addEventListener('click', () =>{
+          console.log('meow')
+          document.cookie = "access-token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+          location.replace('/api/login');
+        });
+
 
   });
  })

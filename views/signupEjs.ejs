@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Сторінка реєстрації</title>
+  <title>Cards</title>
   <link rel ="stylesheet"  href="/public/loginStyles.css">
 </head>
 <body>
@@ -13,16 +13,17 @@
 
     <label for="password">Пароль:</label>
     <input type="text" id="password" name="password" required>
+    <h4 style="display: none" id="errorMassage">Користувач з таким ім'ям вже існує</h4>
     <button id="regButton" type="button" onclick="register()">Зареєструватися</button>
   </form>
 
   <script>
      function register() {
-      const loginUsername = document.getElementById('username').value;
-      const loginPassword = document.getElementById('password').value;
+      const loginUsername = document.getElementById('username');
+      const loginPassword = document.getElementById('password');
       const data = {
-        username: loginUsername,
-        password: loginPassword
+        username: loginUsername.value,
+        password: loginPassword.value
       };
       fetch('/api/signup', {
         method: 'POST',
@@ -31,8 +32,21 @@
         },
         body: JSON.stringify(data)
       })
-      .then(()=>{
-        window.location.href = '/api/login';
+      .then((response)=>{
+        if(response.ok){
+           window.location.href = '/api/login';
+        }
+        else{
+          console.log("awfaf");
+          const errorMassage = document.getElementById('errorMassage')
+          errorMassage.style.color = "#cf1212";
+          errorMassage.style.display ="block";
+          loginUsername.style.borderColor = "#cf1212";
+          loginPassword.style.borderColor = "#cf1212";
+          loginUsername.value = '';
+          loginPassword.value = '';
+        }
+       
       })
     }
   </script>

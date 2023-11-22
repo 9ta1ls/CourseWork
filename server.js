@@ -25,7 +25,6 @@ app.use("/api", userRoute);
 
 app.listen(port,() => {
     console.log(`Сервер запущено на порті ${port}`); 
-
     mongoose.set("strictQuery", false);
     mongoose.connect('mongodb+srv://9ta1ls:coursework123@cluster1.bulcqtr.mongodb.net/cardsapp', {
         useNewUrlParser: true, useUnifiedTopology: true } , ()=>{

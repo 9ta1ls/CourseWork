@@ -7,11 +7,24 @@ const createToken = (user)=>{
 
 const validateToken = (req, res, next)=>{
     const accessToken = req.cookies["access-token"];
-    if(!accessToken) return res.redirect('/api/login');
+    if(!accessToken) 
+        return res.redirect('/api/login');
+    const validToken = verify(accessToken,"secretThatINeedToChange");
+    if(!validToken)     
+        return res.redirect('/api/login');
+    return next();
+};
+
+const validateTokenForLogged = (req, res, next)=>{
+    const accessToken = req.cookies["access-token"];
+    if(accessToken){
+        return res.redirect('/decks');
+    } 
     return next();
 };
 
 module.exports= {
     createToken,
-    validateToken
+    validateToken,
+    validateTokenForLogged
 };

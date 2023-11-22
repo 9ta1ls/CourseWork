@@ -9,16 +9,16 @@ const deckModel = require("../models/deck")
 const decksController = require("../controllers/decksController");
 
 //Відображення колод
-router.get("/",decksController.showDecks);
+router.get("/",validateToken ,decksController.showDecks);
 
 //Додавання колод
-router.post("/",decksController.postDeck);
+router.post("/",validateToken ,decksController.postDeck);
 
 //Оновлення картки
-router.put("/:id",decksController.updateDeck);
+router.put("/:id",validateToken ,decksController.updateDeck);
 
 //Видалення картки
-router.delete("/:id", decksController.deleteDeck);
+router.delete("/:id",validateToken , decksController.deleteDeck);
 
 
 module.exports = router;

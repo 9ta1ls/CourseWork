@@ -2,9 +2,6 @@ const userModel = require("../models/user")
 const bcrypc = require("bcrypt");
 const {createToken} = require('../JWT/JWT');
 
-
-
-
 const showLoginPage = (req, res)=>{
     res.render("loginEjs.ejs");
 };
@@ -25,7 +22,7 @@ const createUser = async(req, res)=>{
         await user.save();
         res.sendStatus(200);
     }catch(error){
-       return  res.sendStatus(400).send(error);
+       return  res.sendStatus(400);
     }
 };
 
@@ -43,8 +40,13 @@ const loginIntoUser = async(req, res)=>{
         }
         else{
             const accessToken = createToken(user);
-            res.cookie("access-token", accessToken, {maxAge: 60*60*24*30*1000});
-            res.json("logged in");
+            res.cookie("access-token", accessToken, {
+                maxAge: 60 * 60 * 24 * 30 * 1000,
+                httpOnly: true,
+                secure: true, 
+                sameSite: 'None',
+            });
+            res.sendStatus(200);
         }
     });
 };

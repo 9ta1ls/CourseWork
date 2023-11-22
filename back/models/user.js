@@ -15,7 +15,7 @@ const userSchema = new Schema({
     },
     decks: [{
         type: Schema.Types.ObjectId,
-        ref: 'cards'
+        ref: 'decks'
     }]
 });
 

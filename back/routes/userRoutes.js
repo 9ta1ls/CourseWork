@@ -3,17 +3,16 @@ const router  = express.Router();
 const path = require("path");
 const mongoose = require("mongoose");
 
-
-const userModel = require("../models/user");
+const validation = require('../JWT/JWT');
 
 const usersController = require("../controllers/usersController");
 
-router.get("/login", usersController.showLoginPage);
+router.get("/login",validation.validateTokenForLogged, usersController.showLoginPage);
 
-router.get("/signup",usersController.showSignupPage);
+router.get("/signup",validation.validateTokenForLogged, usersController.showSignupPage);
 
-router.post("/signup",usersController.createUser);
+router.post("/signup",validation.validateTokenForLogged, usersController.createUser);
 
-router.post("/login",usersController.loginIntoUser);
+router.post("/login",validation.validateTokenForLogged, usersController.loginIntoUser);
 
 module.exports = router;

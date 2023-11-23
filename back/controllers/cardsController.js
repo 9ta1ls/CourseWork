@@ -47,7 +47,7 @@ const postCard = async (req, res) =>{
     })
     setTimeout(() => {
         res.redirect(`/cards/${deckId}`);
-    }, 100);
+    }, 200);
 }
 
 const deleteCard = async(req, res)=>{

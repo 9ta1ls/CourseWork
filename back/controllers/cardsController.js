@@ -1,11 +1,12 @@
 const deckModel = require("../models/deck");
 const userModel = require('../models/user');
 const {verify} = require('jsonwebtoken');
+require('dotenv').config();
 
 
 function returnUserId(req){
     const accessToken = req.cookies["access-token"];
-    const decoded = verify(accessToken,'secretThatINeedToChange');
+    const decoded = verify(accessToken, process.env.JWT_SECRET);
     return decoded.id;
 };
 
@@ -18,9 +19,8 @@ async function isDeckInUser(req, res, deckId){
 
 const showCards = async (req, res) => {
     const deckId = req.params.id;
-    if(isDeckInUser(req, res, deckId) == false){
-        console.log('a');
-        res.statusCode(400);
+    if(!await isDeckInUser(req, res, deckId)){
+        return res.sendStatus(400);
     }
     const deckWithCards = await deckModel.findById(deckId);
     const name = deckWithCards.name;

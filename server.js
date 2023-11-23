@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser');
 const deckRoute = require("./back/routes/deckRoutes");
 const cardRoute = require("./back/routes/cardRoutes");
 const userRoute = require("./back/routes/userRoutes");
+require('dotenv').config();
 
 
 app.use(cookieParser());
@@ -26,7 +27,7 @@ app.use("/api", userRoute);
 app.listen(port,() => {
     console.log(`Сервер запущено на порті ${port}`); 
     mongoose.set("strictQuery", false);
-    mongoose.connect('mongodb+srv://9ta1ls:coursework123@cluster1.bulcqtr.mongodb.net/cardsapp', {
+    mongoose.connect(`${process.env.DB_LINK}`, {
         useNewUrlParser: true, useUnifiedTopology: true } , ()=>{
         console.log("connected");
     });

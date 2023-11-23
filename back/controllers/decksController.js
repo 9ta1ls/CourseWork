@@ -1,11 +1,12 @@
 const deckModel = require('../models/deck');
 const userModel = require('../models/user');
 const {verify} = require('jsonwebtoken');
+require('dotenv').config();
 
 
  function returnUserId(req){
     const accessToken = req.cookies["access-token"];
-    const decoded = verify(accessToken,'secretThatINeedToChange');
+    const decoded = verify(accessToken, process.env.JWT_SECRET);
     return decoded.id;
 };
 

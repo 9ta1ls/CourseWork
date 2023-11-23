@@ -1,6 +1,7 @@
 const userModel = require("../models/user")
 const bcrypc = require("bcrypt");
 const {createToken} = require('../JWT/JWT');
+require('dotenv').config();
 
 const showLoginPage = (req, res)=>{
     res.render("loginEjs.ejs");

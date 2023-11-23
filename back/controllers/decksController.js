@@ -37,9 +37,6 @@ const postDeck = async (req, res) =>{
 
 const updateDeck = async (req, res) =>{
     const deckId = req.params.id;
-    if(!isDeckInUser(req, res, deckId)){
-        res.redirect('/decks')
-    }
     const newName = req.body.name;
     const update = {name: newName};
     const updateDeck = await deckModel.findByIdAndUpdate(deckId,update, { new: true })
@@ -48,9 +45,6 @@ const updateDeck = async (req, res) =>{
 
 const deleteDeck = async (req, res) =>{
     const deckId = req.params.id;
-    if(!isDeckInUser(req, res, deckId)){
-        res.redirect('/decks')
-    }
     await deckModel.findByIdAndDelete(deckId);
     res.status(200).send();
 };

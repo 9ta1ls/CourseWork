@@ -9,7 +9,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const question = document.getElementById("question");
 
     let cardsArr = JSON.parse(cardsArrJSON);
-    
+
+    function shuffleArray(array) {
+      for (var i = array.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var temp = array[i];
+          array[i] = array[j];
+          array[j] = temp;
+      }
+  }    
     function getPromiseFromEvent(item, event) {
       return new Promise((resolve) => {
         const listener = (e) => {
@@ -71,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   async function processCards() {
+      shuffleArray(cardsArr);
       while(cardsArr.length != 0) {
         const card = cardsArr[0];
         answerInput.value ="";

@@ -22,15 +22,31 @@ app.use("/decks", deckRoute);
 app.use("/cards", cardRoute);
 app.use("/api", userRoute);
 
-
-
-app.listen(port,() => {
-    console.log(`Сервер запущено на порті ${port}`); 
-    mongoose.set("strictQuery", false);
-    mongoose.connect(`${process.env.DB_LINK}`, {
-        useNewUrlParser: true, useUnifiedTopology: true } , ()=>{
-        console.log("connected");
-    });
+app.get('/',(req, res)=>{
+    res.redirect('/api/signup')
 })
+
+
+
+mongoose.set("strictQuery", false); // Встановлюємо перед підключенням
+
+const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.DB_LINK, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        console.log("✅ База даних підключена");
+    } catch (error) {
+        console.error("❌ Помилка підключення до БД:", error);
+        process.exit(1); // Вихід із процесу у разі помилки
+    }
+};
+
+connectDB();
+
+app.listen(port, () => {
+    console.log(`🚀 Сервер запущено на порті ${port}`);
+});
 
 
